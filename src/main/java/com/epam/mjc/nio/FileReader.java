@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-
 public class FileReader {
-
     public Profile getDataFromFile(File file) {
         Profile profile = new Profile();
         Path path = file.toPath();
@@ -17,20 +14,11 @@ public class FileReader {
                 var key = entry[0];
                 var value = entry[1];
                 switch (key) {
-                    case "Name":
-                        profile.setName(value);
-                        break;
-                    case "Age":
-                        profile.setAge(Integer.valueOf(value));
-                        break;
-                    case "Phone":
-                        profile.setPhone(Long.valueOf(value));
-                        break;
-                    case "Email":
-                        profile.setEmail(value);
-                        break;
-                    default:
-                        throw new IllegalStateException("Uknown key: " + key);
+                    case "Name" -> profile.setName(value);
+                    case "Age" -> profile.setAge(Integer.valueOf(value));
+                    case "Phone" -> profile.setPhone(Long.valueOf(value));
+                    case "Email" -> profile.setEmail(value);
+                    default -> throw new IllegalStateException("Unknown key: " + key);
                 }
             }
             return profile;
